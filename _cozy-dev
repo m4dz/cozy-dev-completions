@@ -2,16 +2,30 @@
 typeset -A opt_args
 
 _arguments -C \
-  ':cmds:->cmds' \
+  '(- *)'{-h,--help}'[display usage information]' \
+  '(- *)'{-V,--version}'[display the version number]' \
+  '1:cmds:->cmds' \
   '*:: :->args' \
 && ret=0
 
 case "$state" in
   (cmds)
     local commands; commands=(
-      'uninstall:uninstall given application'
-      'deploy:push code and deploy app located in current directory to your virtualbox'
-      'undeploy:undeploy application'
+      'uninstall:Uninstall given application'
+      'update:Update application (git + npm install) and restart it through haibu'
+      'new:Create a new app suited to be deployed on a Cozy Cloud.'
+      'deploy:Push code and deploy app located in current directory to your virtualbox. Argument port correspond to port usedby your application.'
+      'undeploy:Undeploy application'
+      'vm\:init:Initialize the current folder to host a virtual machine with Vagrant. This will download the base box file.'
+      'vm\:start:Starts the virtual machine with Vagrant.'
+      'vm\:stop:Stops the Virtual machine with Vagrant.'
+      'vm\:status:Tells which services of the VM are running and accessible.'
+      'vm\:update:Updates the virtual machine with the latest version of the cozy PaaS and core applications'
+      'vm\:update-image:Updates the virtual machine image. Warning: this action deletes all your data in your virtualbox'
+      'vm\:destroy:Destroy the virtual machine. Data will be lost.'
+      "db\:switch:Change the database used by Cozy's data system (default: cozy)."
+      'db\:reset:Reset the given database (will destroy all data).'
+      'db\:name:Returns the current used database'
     )
 
     _describe -t commands 'command' commands && ret=0
