@@ -14,7 +14,7 @@ Just add `antigen bundle m4dz/cozy-dev-completions` to your `~/.zshrc` file.
 1. Clone the repository in your custom folder
 
 ```sh
-$ git clone https://github.com/m4dz/cozy-dev-completions.git ~/.cozy-dev-completions ~/.oh-my-zsh/custom/plugins/cozy-dev-completions
+$ git clone https://github.com/m4dz/cozy-dev-completions.git ~/.oh-my-zsh/custom/plugins/cozy-dev-completions
 ```
 
 2. Enable it in your `~/.zshrc`
